@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Proxy</title>
+<style>
+body {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+  font-size: 15px;
+  line-height: 22px;
+  color: #252519;
+  margin: 0; padding: 0;
+  background-color: #F1F1EF;
+}
+
+a, a:visited {
+  color: #008FA5;
+}
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+p code {
+  background: #fff;
+  padding: 1px;
+  border: 1px solid #E4E4D6;
+}
+
+pre {
+  background: #fff;
+  padding: 3px 7px;
+  border: 1px solid #E4E4D6;
+  margin-left: 24px;
+  width: 900px;
+}
+
+pre, code {
+  font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+}
+
+.function {
+  color: #CC6600;
+}
+
+.keyword {
+  color: #E658A0;
+}
+
+.string {
+  color: #7CAF45;
+}
+
+.comment {
+  color: #408080;
+}
+
+.function-name {
+  color: #2680C6;
+}
+
+.highlight {
+  background: #FFFDDF;
+}
+</style>  
+</head>
+<body>
+<div class="container">
+
+<h1>Proxy</h1>
+
+<p><strong>Proxy</strong> is a function (as used in <a href="https://github.com/vrld/Princess/blob/master/main.lua">Princess</a> by <a href="https://github.com/vrld/">vrld</a>, and a part of <a href="https://github.com/headchant/love-boilerplate/blob/master/project/main.lua">love-boilerplate</a> by <a href="https://github.com/headchant">Headchant</a>) which can simplify using resources in L&Ouml;VE.</p>
+
+<p>For example, instead of writing:</p>
+
+<pre><code>background = love.graphics.newImage(<span class="string">'img/background.png'</span>)
+love.graphics.draw(background, 0, 0)
+</code></pre>
+
+<p>you can simply write:</p>
+
+<pre><code>love.graphics.draw(Image.background, 0, 0)
+</code></pre>
+
+<h2>Using Proxy</h2>
+
+<p>Proxies are set up like this:</p>
+
+<pre><code>Image = Proxy(<span class="keyword">function</span>(k) <span class="keyword">return</span> love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>) <span class="keyword">end</span>)
+Sfx   = Proxy(<span class="keyword">function</span>(k) <span class="keyword">return</span> love.audio.newSource(<span class="string">'sfx/'</span> .. k .. <span class="string">'.ogg'</span>, <span class="string">'static'</span>) <span class="keyword">end</span>)
+Music = Proxy(<span class="keyword">function</span>(k) <span class="keyword">return</span> love.audio.newSource(<span class="string">'music/'</span> .. k .. <span class="string">'.ogg'</span>, <span class="string">'stream'</span>) <span class="keyword">end</span>)
+</code></pre>
+
+<p>Resources can now be used like this:</p>
+
+<pre><code><span class="comment">-- Creates an new image from 'img/rainbow.png' and draws it.</span>
+love.graphics.draw(Image.rainbow, 123, 123)
+
+<span class="comment">-- Creates a new audio source from 'music/smoothjazz.ogg' and sets it to loop.</span>
+Music.smoothjazz:setLooping(true)
+</code></pre>
+
+<p>When resources are used for the first time, they're stored. When they're used afterwards, the stored versions are used.</p>
+
+<pre><code><span class="comment">-- Creates a new audio source from 'sfx/sparkle.ogg' and plays it.</span>
+Sfx.sparkle:play()
+
+<span class="comment">-- Plays 'sfx/sparkle.ogg' again, and doesn't need to create it.</span>
+Sfx.sparkle:play()
+</code></pre>
+
+<h2>The Proxy function</h2>
+
+<pre><code><span class="keyword">function</span> <span class="function-name">Proxy</span>(f)
+    <span class="keyword">return</span> <span class="function">setmetatable</span>({}, {__index = <span class="keyword">function</span>(self, k)
+        <span class="keyword">local</span> v = f(k)
+        self[k] = v
+        <span class="keyword">return</span> v
+    <span class="keyword">end</span>})
+<span class="keyword">end</span>
+</code></pre>
+
+<h2>Haha okay what's going on</h2>
+
+<p>To understand all this, let's</p>
+<ul>
+<li>Learn any unfamiliar Lua stuff</span>
+<li>Run through the function with an example</span>
+</ul>
+
+<h2>Lua things</h2>
+
+<p><strong>setmetatable</strong> takes two arguments: The table to set the metatable of, and the metatable to set to it. It returns the table which it set the metatable of.</p>
+
+<p>The <strong>__index</strong> metamethod is called when a table with this metamethod is accessed at an index at which it doesn't have anything at. It can be set to a function which takes two arguments, which will be: The table this metamethod was called from, and the value it attemped to index.</p>
+
+<p><strong>local</strong> variables are only accessible within the function they are defined in, so as not to disrupt the values of any global variables with the same name.</p>
+
+<h2>What Proxy does</h2>
+
+<ul>
+    <li>Recieves a function which, given a name, returns a resource.</li>
+    <li>Returns a table, which is initially empty.</li>
+    <li>This table has a metatable with an <strong>__index</strong> metamethod, which...</li>
+    <li><ul>
+        <li>Calls the resource-returning function with the name of what was attempted to be indexed. The returned resource is stored in a variable.</li>
+    </ul></li>
+    <li><ul>
+        <li>Sets the value of the table at the attempted index to the resource.</li>
+    </ul></li>
+    <li><ul>
+        <li>Returns the resource.</li>
+    </ul></li>
+    <li>When the proxy table is indexed again with the same index, the resource at that index is used, and the <strong>__index</strong> metamethod isn't called.</li>
+</ul>
+
+<h2>A run-through</h2>
+
+<pre><code><span class="keyword">function</span> <span class="function-name">Proxy</span>(f)
+    <span class="keyword">return</span> <span class="function">setmetatable</span>({}, {__index = <span class="keyword">function</span>(self, k)
+        <span class="keyword">local</span> v = f(k)
+        self[k] = v
+        <span class="keyword">return</span> v
+    <span class="keyword">end</span>})
+<span class="keyword">end</span>
+
+Image = Proxy(<span class="keyword">function</span>(k) <span class="keyword">return</span> love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>) <span class="keyword">end</span>)
+
+love.graphics.draw(Image.rainbow, 123, 123)
+</code></pre>
+
+<p>So, what's going on?</p>
+
+<p><strong>Image</strong> is being indexed with the string <span class="string"><strong>'rainbow'</strong></span>.</p>
+
+<p>Is there an image at <strong>Image.rainbow</strong>? If so, it's drawn. If not, what happens?</p>
+
+<p><strong>Image</strong> is whatever is returned by <code>Proxy(<span class="keyword">function</span>(k) <span class="keyword">return</span> love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>) <span class="keyword">end</span>)</code>.</p>
+
+<p>What does it return?</p>
+
+<pre><code><span class="keyword">function</span> <span class="function-name">Proxy</span>(f)
+    <span class="keyword">return</span> <span class="function">setmetatable</span>({}, {__index = <span class="keyword">function</span>(self, k) <span class="comment">---[[etc.]]</span> <span class="keyword">end</span>)
+<span class="keyword">end</span>
+</code></pre>
+
+<p>It returns what <strong>setmetable</strong> returns, which is its first argument, an empty table. This table has a metatable, with the metamethod <strong>__index</strong>.</p>
+
+<p>What does this <strong>__index</strong> metamethod do?</p>
+
+<p>Let's see what happens when we call <strong>Proxy</strong> with the argument it is being called with.</p>
+
+<pre><code><span class="keyword">function</span> <span class="function-name">Proxy</span>(<span class="highlight"><span class="keyword">function</span>(k) <span class="keyword">return</span> love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>) <span class="keyword">end</span></span>)
+    <span class="keyword">return</span> <span class="function">setmetatable</span>({}, {__index = <span class="keyword">function</span>(self, k)
+        <span class="keyword">local</span> v = f(k)
+        self[k] = v
+        <span class="keyword">return</span> v
+    <span class="keyword">end</span>})
+<span class="keyword">end</span>
+</code></pre>
+
+<p><strong>f</strong> is the argument given to <strong>Proxy</strong>, so <code><span class="keyword">local</span> v = f(k)</code> can be worked out too.</p>
+<p>The argument returns <code>love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>)</code></p>
+
+
+<pre><code><span class="keyword">function</span> <span class="function-name">Proxy</span>(<span class="keyword">function</span>(k) <span class="keyword">return</span> love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>) <span class="keyword">end</span>)
+    <span class="keyword">return</span> <span class="function">setmetatable</span>({}, {__index = <span class="keyword">function</span>(self, k) 
+        <span class="keyword">local</span> v = <span class="highlight">love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>)</span>
+        self[k] = v
+        <span class="keyword">return</span> v
+    <span class="keyword">end</span>})
+<span class="keyword">end</span>
+</code></pre>
+
+<p>The <strong>__index</strong> metamethod, as shown above, ends up as this:</p>
+
+<pre><code><span class="keyword">function</span>(self, k) 
+    <span class="keyword">local</span> v = love.graphics.newImage(<span class="string">'img/'</span> .. k .. <span class="string">'.png'</span>)
+    self[k] = v
+    <span class="keyword">return</span> v
+<span class="keyword">end</span>
+</code></pre>
+
+<p>So, If <strong>Image.rainbow</strong> dosen't exist, this <strong>__index</strong> metamethod is run, with the argument <strong>self</strong> being the table <strong>Image</strong> and the argument <strong>k</strong> being the string <strong><span class="string">'rainbow'</span></strong>.</p>
+
+<pre><code><span class="keyword">function</span>(<span class="highlight">Image</span>, <span class="highlight"><span class="string">'rainbow'</span></span>)
+    <span class="keyword">local</span> v = love.graphics.newImage(<span class="string">'img/'</span> .. <span class="highlight"><span class="string">'rainbow'</span></span> .. <span class="string">'.png'</span>)
+    <span class="highlight">Image</span>[<span class="highlight"><span class="string">'rainbow'</span></span>] = v
+    <span class="keyword">return</span> v
+<span class="keyword">end</span>
+</code></pre>
+
+<p><strong>v</strong> is the new image resouce, from the file at <strong><span class="string">'img/rainbow.png'<span class="string"></strong>, and it's returned at the end of the function.</p>
+
+<p>So when <strong>Image.rainbow</strong> is used, this <strong>__index</strong> metamethod is called, and the new image is returned!</p>
+
+<p><code>Image[<span class="string">'rainbow'</span>] = v</code> sets the entry of the table <strong>Image</strong> at the index <strong>rainbow</strong> to the value of <strong>v</strong>, the image.</p>
+
+<strong>Image</strong> didn't have any value at the index <strong><span class="string">'rainbow'</span></strong> before now, so why isn't the <strong>__index</strong> metamethod called again here?
+
+It's because the <strong>__index</strong> metamethod is only run when the value at the index of the table has attempted to be <em>accessed</em>, not when it has attempted to be <em>set</em>.
+
+<p>So now the actual image is stored in <strong>Image.rainbow</strong>!</p>
+
+<p>After the first time <strong>Image.rainbow</strong> is used, the <strong>rainbow</strong> entry of <strong>Image</strong> is the image, and not <strong>nil</strong>, and therefore the <strong>__index</strong> metamethod isn't called and it uses the stored image.</p>
+
+<br />
+<br />
+
+<p>Copyright is waived on all original parts of this code walkthrough.</p>
+
+<p xmlns:dct="http://purl.org/dc/terms/">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAAAAABWohdTAAAA10lEQVQ4ja2TUW3EMBAFB0IgBIIhGMJBMIRACINCOAiFYAiGEAgLYfpze6dcW1Wqsx/W2taOn9564fJQOzQ1emjcWIb/DkBdaRoV2EIr1WOZUXhnDa0AbBoL3TYDLNx1QPsAQjeaYwYIoTscDeg6WBVUEDMBQSGtOh/y2GOnqDvLQYVdBa0kLpNceZUrivnuE1jVSm30E/AHhe/AvM/krJDmm0L+UsiJjQA+PeT4PHlIVqdxv3j4DZhdLr082JNdvvwfunJ7TUqU6UlxQAs9emiU2Vm+OL4ArOGH34vOFxcAAAAASUVORK5CYII=">
+  </a>
+</p>
+
+</div>
+</body></html>

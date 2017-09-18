@@ -1,0 +1,892 @@
+<style>
+
+	html, body, div, span, applet, object, iframe,
+	a, abbr, acronym, address, big, cite, 
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		vertical-align: baseline;
+		font-size: 100%;
+		font: inherit;
+
+		html, body, div, span, applet, object, iframe,
+		a, abbr, acronym, address, big, cite, 
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+			font-size: 100%;
+			font: inherit;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+
+		body {
+			font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+			font-family: Verdana, sans-serif;
+			font-size: 15px;
+			line-height: 22px;
+			color: #252519;
+			color: #252519;
+			margin: 0; padding: 0;
+			background-color: #FFFFFF;
+			background-color: #f9ece0;
+			background-color: #ffdab9;
+			background-color: #F1F1EF;
+		}
+		a, a:visited {
+			color: #008FA5;
+			color: #ed1a91;
+		}
+		.container {
+			margin-top: 50px;
+			margin-bottom: 50px;
+			margin-left: 50px;
+			width: 980px;
+		}
+		p code {
+			background: #fff;
+			padding: 1px;
+			/*border: 1px solid #E4E4D6;*/
+		}
+		pre {
+			background: #fff;
+			padding: 3px 7px;
+			/*border: 1px solid #E4E4D6;*/
+			/*
+			margin-left: 24px;
+			*/
+		}
+		img {
+			padding: 3px 7px;
+			margin-left: 24px;
+		}
+		pre, code {
+			font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+		}
+		.text, .n {
+			color: #252519;
+		}
+		.grey, .p, .o, .ow {
+			color: #858579;
+		}
+		.function {
+			color: #CC6600;
+		}
+		.keyword, .k, .kd {
+			color: #E658A0;
+		}
+		.string, .s, .s1 {
+			color: #7CAF45;
+			color: #0490CC;
+		}
+		.comment {
+			color: #408080;
+		}
+		.function-name {
+			color: #2680C6;
+		}
+		.highlight {
+			background: #FFFDDF;
+		}
+	}
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+
+	body {
+		font-family: 'Verdana', sans-serif;
+		line-height: 20pt;
+		font-size: 10pt;
+		color: #333;
+		background-color: #ddd;
+	}
+	/*
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	*/
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	tr {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+	.folder {
+		color: #7a8fde;
+		color: #9971b1;
+	}
+	.place {
+		color: #f17272;
+	}
+	.selected {
+		color: #333333;
+	}
+	.unselected, .fp {
+		color: #878787;
+	}
+	.item {
+		color: #ffa770;
+		color: #f98640;
+		color: #f18d51;
+	}
+	.path {
+		color: #28bebe;
+	}
+	.name {
+		color: #8fce27;
+		color: #86b731;
+	}
+	.extension {
+		color: #f57adf;
+	}
+	.section {
+		margin-bottom: 30pt;
+	}
+	.question {
+		font-family: 'Arial', sans-serif;
+		font-size: 11pt;
+		font-weight: bold;
+		padding-bottom: 10px;
+	}
+	.mono {
+		font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+	}
+	.arrow {
+		color: #ffa770;
+	}
+	.c {
+		background-color: #fff;
+		padding: 20px;
+		width: 350pt;
+		margin-right: 10px;
+
+		/*
+
+		position:absolute;
+		left:15px;
+		top:15px;
+
+		*/
+
+		}
+
+		.second {
+		background-color: #fff;
+		padding: 20px;
+		width: 350pt;
+		/*
+		margin-left: 520px;
+		margin-top: -143px;
+		position:absolute;
+		left:537px;
+		top:1450px;
+		*/
+		}
+
+		.third {
+		background-color: #fff;
+		padding: 20px;
+		width: 350pt;
+		/*
+		margin-left: 1040px;
+		margin-top: -867px;
+
+		position:absolute;
+		left:1059px;
+		top:1840px;
+		*/
+		}
+
+
+		.i {
+		color: #dd1111;
+		}
+		.r {
+		color: #5e138e;
+		}
+		.t {
+		color: #2680C6;
+		}
+		body {
+		font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+		font-family: Verdana, sans-serif;
+		font-size: 15px;
+		line-height: 22px;
+		color: #252519;
+		color: #252519;
+		margin: 0; padding: 0;
+		background-color: #FFFFFF;
+		background-color: #f9ece0;
+		background-color: #ffdab9;
+		background-color: #F1F1EF;
+		}
+		a, a:visited {
+		color: #008FA5;
+		color: #ed1a91;
+		}
+		.container {
+		margin-top: 50px;
+		margin-bottom: 50px;
+		margin-left: 50px;
+		width: 980px;
+		}
+		p code {
+		background: #fff;
+		padding: 1px;
+		/*border: 1px solid #E4E4D6;*/
+		}
+		pre {
+		background: #fff;
+		padding: 3px 7px;
+		/*border: 1px solid #E4E4D6;*/
+		/*
+		margin-left: 24px;
+		*/
+		}
+		img {
+		padding: 3px 7px;
+		margin-left: 24px;
+		}
+		pre, code {
+		font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+		}
+		.text, .n {
+		color: #252519;
+		}
+		.grey, .p, .o, .ow {
+		color: #858579;
+		}
+		.function {
+		color: #CC6600;
+		}
+		.keyword, .k, .kd {
+		color: #E658A0;
+		}
+		.string, .s, .s1 {
+		color: #7CAF45;
+		color: #0490CC;
+		}
+		.comment {
+		color: #408080;
+		}
+		.function-name {
+		color: #2680C6;
+		}
+		.highlight {
+		background: #FFFDDF;
+		}
+	</style>
+	<div class="container">
+		<p style="font-weight: bold;">For LÖVE 0.10.2</p>
+		<p>Here's a function which loads images and sounds from a folder into a table, with keys based on file names and subfolders in subtables.</p>
+		<p>For example, if you have a game folder with these files...</p>
+		<div class="codehilite"><pre><span class="n">main</span><span class="p">.</span><span class="n">lua</span>
+<span class="n">rainbow</span><span class="p">.</span><span class="n">png</span>
+<span class="n">sounds</span><span class="o">/</span><span class="n">sparkle</span><span class="p">.</span><span class="n">ogg</span>
+<span class="n">sounds</span><span class="o">/</span><span class="n">music</span><span class="o">/</span><span class="n">smoothjazz</span><span class="p">.</span><span class="n">xm</span>
+</pre></div>
+
+
+		<p>... and then call this function...</p>
+		<div class="codehilite"><pre><span class="n">loadresources</span><span class="p">()</span>
+</pre></div>
+
+
+		<p>... the resources will be loaded and can be used like this:</p>
+		<div class="codehilite"><pre><span class="n">love</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">rainbow</span><span class="p">)</span>
+<span class="n">sounds</span><span class="p">.</span><span class="n">sparkle</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+<span class="n">sounds</span><span class="p">.</span><span class="n">music</span><span class="p">.</span><span class="n">smoothjazz</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+
+
+		<p>A table can be given to load the resources into...</p>
+		<div class="codehilite"><pre><span class="n">resources</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">loadresources</span><span class="p">(</span><span class="n">resources</span><span class="p">)</span>
+
+<span class="n">love</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">resources</span><span class="p">.</span><span class="n">rainbow</span><span class="p">)</span>
+<span class="n">resources</span><span class="p">.</span><span class="n">sounds</span><span class="p">.</span><span class="n">sparkle</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+<span class="n">resources</span><span class="p">.</span><span class="n">sounds</span><span class="p">.</span><span class="n">music</span><span class="p">.</span><span class="n">smoothjazz</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+
+
+		<p>... or a base folder can be given...</p>
+		<div class="codehilite"><pre><span class="n">loadresources</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">sounds&#39;</span><span class="p">)</span>
+
+<span class="n">sparkle</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+<span class="n">music</span><span class="p">.</span><span class="n">smoothjazz</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+
+
+		<p>... or both, with the arguments in either order:</p>
+		<div class="codehilite"><pre><span class="n">resources</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">loadresources</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">sounds&#39;</span><span class="p">,</span> <span class="n">resources</span><span class="p">)</span>
+
+<span class="n">resources</span><span class="p">.</span><span class="n">sparkle</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+<span class="n">resources</span><span class="p">.</span><span class="n">music</span><span class="p">.</span><span class="n">smoothjazz</span><span class="p">:</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+
+
+		<h2>The function:</h2>
+		<div class="codehilite"><pre><span class="k">function</span> <span class="nf">loadresources</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+	<span class="kd">local</span> <span class="n">base_folder</span><span class="p">,</span> <span class="n">resource_table</span>
+
+	<span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">string&#39;</span> <span class="k">then</span>
+		<span class="n">base_folder</span> <span class="o">=</span> <span class="n">a</span>
+	<span class="k">elseif</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">string&#39;</span> <span class="k">then</span>
+		<span class="n">base_folder</span> <span class="o">=</span> <span class="n">b</span>
+	<span class="k">else</span>
+		<span class="n">base_folder</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">&#39;</span>
+	<span class="k">end</span>
+
+	<span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">table&#39;</span> <span class="k">then</span>
+		<span class="n">resource_table</span> <span class="o">=</span> <span class="n">a</span>
+	<span class="k">elseif</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">table&#39;</span> <span class="k">then</span>
+		<span class="n">resource_table</span> <span class="o">=</span> <span class="n">b</span>
+	<span class="k">else</span>
+		<span class="n">resource_table</span> <span class="o">=</span> <span class="nb">_G</span>
+	<span class="k">end</span>
+
+	<span class="kd">local</span> <span class="k">function</span> <span class="nf">load_directory</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">place</span><span class="p">)</span>
+
+		<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">item</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">love</span><span class="p">.</span><span class="n">filesystem</span><span class="p">.</span><span class="n">getDirectoryItems</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span> <span class="k">do</span>
+
+			<span class="kd">local</span> <span class="n">path</span> <span class="o">=</span> <span class="n">folder</span><span class="o">..</span><span class="s1">&#39;</span><span class="s">/&#39;</span><span class="o">..</span><span class="n">item</span>
+
+			<span class="k">if</span> <span class="n">love</span><span class="p">.</span><span class="n">filesystem</span><span class="p">.</span><span class="n">isFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">then</span>
+				<span class="kd">local</span> <span class="n">name</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">item</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">(.+)%.(.+)$&#39;</span><span class="p">)</span>
+
+				<span class="k">if</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">png&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">bmp&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">jpg&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">jpeg&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">gif&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">tga&#39;</span> <span class="k">then</span>
+					<span class="n">place</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">love</span><span class="p">.</span><span class="n">graphics</span><span class="p">.</span><span class="n">newImage</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+				<span class="k">elseif</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">ogg&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">mp3&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">wav&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">xm&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">it&#39;</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">s3m&#39;</span> <span class="k">then</span>
+					<span class="n">place</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">love</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">newSource</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+				<span class="k">end</span>
+
+			<span class="k">else</span>
+				<span class="n">place</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+				<span class="n">load_directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">place</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+			<span class="k">end</span>
+		<span class="k">end</span>
+	<span class="k">end</span>
+
+	<span class="n">load_directory</span><span class="p">(</span><span class="n">base_folder</span><span class="p">,</span> <span class="n">resource_table</span><span class="p">)</span>
+
+<span class="k">end</span>
+</pre></div>
+
+
+		<h2>What's going on:</h2>
+		<p>There's a base folder to search through and a table for the resources to be loaded into. If these aren't given to the function as arguments, the base folder is the game folder and the resource table is the global table, <a href="http://www.lua.org/pil/14.html">_G</a>.</p>
+		<p>There's a <a href="http://www.lua.org/pil/4.2.html">local</a> function which is given a folder and a table, and is defined like this:</p>
+		<p>Loop through each item (file and folder) in the given folder using the table returned by <a href="https://love2d.org/wiki/love.filesystem.getDirectoryItems">love.filesystem.getDirectoryItems</a> and <a href="http://www.lua.org/pil/7.3.html">pairs</a>...</p>
+		<ul>
+			<li>Create the full path of the item by joining the item name to the folder path.</li>
+			<li>Use <a href="https://love2d.org/wiki/love.filesystem.isFile">love.filesystem.isFile</a> to check if the item is a file or a folder.</li>
+		</ul>
+		<p>If it's a file...</p>
+		<ul>
+			<li>Separate the name and the extension using the <a href="http://lua-users.org/wiki/StringLibraryTutorial">match</a> method.</li>
+			<li>Load the file into the given table with the key of the filename-without-extension if it has an image or sound extension, using <a href="https://love2d.org/wiki/love.graphics.newImage">love.graphics.newImage</a> or <a href="https://love2d.org/wiki/love.audio.newSource">love.audio.newSource</a>.</li>
+		</ul>
+		<p>If it's a folder...</p>
+		<ul>
+			<li>Create a new table in the given table with the key of the folder name.</li>
+			<li>Call this function again with the folder name and the created table.</li>
+		</ul>
+		<p>After the function is defined, it's called with the base folder and resource table.</p>
+		<h2>An example:</h2>
+		<p>For example, if you have a game folder with these files...</p>
+		<div class="codehilite"><pre><span class="n">main</span><span class="p">.</span><span class="n">lua</span>
+<span class="n">rainbow</span><span class="p">.</span><span class="n">png</span>
+<span class="n">sounds</span><span class="o">/</span><span class="n">sparkle</span><span class="p">.</span><span class="n">ogg</span>
+<span class="n">sounds</span><span class="o">/</span><span class="n">music</span><span class="o">/</span><span class="n">smoothjazz</span><span class="p">.</span><span class="n">xm</span>
+</pre></div>
+
+
+		<p>... and then call the function like this...</p>
+		<div class="codehilite"><pre><span class="n">resources</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">loadresources</span><span class="p">(</span><span class="n">resources</span><span class="p">)</span>
+</pre></div>
+
+
+		<p>... here's what happens:</p>
+		<table border=0>
+			<tbody>
+				<tr>
+					<td>
+
+
+
+						<div class="c">
+
+							<div class="section">
+								<p class="question">Loop through all of the items in the folder</p>
+
+								<table>
+									<tbody>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">folder</td>
+											<td class="folder">''</td>
+										</tr>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">place</td>
+											<td class="place">resources</td>
+										</tr>
+										<tr>
+											<td align="right" class="arrow" style="padding-top: 8pt">&#9654;</td>
+											<td style="padding-top: 10pt" class="selected">main.lua</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="unselected">rainbow.png</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="unselected">sounds</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="section">
+								<p class="question">Create the full path by joining the folder with the item name</p>
+								<p class="mono"><span class="path">path</span> = <span class="folder">''</span> .. '/' .. <span class="item">'main.lua'</span></p>
+							</div>
+
+							<div class="section">
+								<p class="question">Is it a file or a folder?</p>
+								<p><span class="mono">love.filesystem.isFile(<span class="path">'/main.lua'</span>)</span> returns <b>true</b>, it's a file!</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Separate the name and extension</p>
+
+								<p class="mono">
+								<span class="name">name</span>,
+								<span class="extension">ext</span>
+								= (<span class="item">'main.lua'</span>):match('<span class="name">(.+)</span><span class="dot">%.</span><span class="extension">(.+)$</span>')
+								</p>
+
+								<p class="mono">
+								<span class="name">main</span>, 
+								<span class="extension">lua</span>
+								</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Is it an image or a sound extension?</p>
+								<p>Neither, nothing to do here!</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Next item in the folder!</p>
+
+								<table>
+									<tbody>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">folder</td>
+											<td class="folder">''</td>
+										</tr>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">place</td>
+											<td class="place">resources</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td style="padding-top: 10pt" class="unselected">main.lua</td>
+										</tr>
+										<tr>
+											<td align="right" class="arrow" style="padding-bottom: 1pt">&#9654;</td>
+											<td class="selected">rainbow.png</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="unselected">sounds</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="section">
+								<p class="question">Create the full path by joining the folder with the item name</p>
+								<p class="mono"><span class="path">path</span> = <span class="folder">''</span> .. '/' .. <span class="item">'rainbow.png'</span></p>
+							</div>
+
+							<div class="section">
+								<p class="question">Is it a file or a folder?</p>
+								<p><span class="mono">love.filesystem.isFile(<span class="path">'/rainbow.png'</span>)</span> returns <b>true</b>, it's a file!</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Separate the name and extension</p>
+
+								<p class="mono">
+								<span class="name">name</span>,
+								<span class="extension">ext</span>
+								= (<span class="item">'rainbow.png'</span>):match('<span class="name">(.+)</span><span class="dot">%.</span><span class="extension">(.+)$</span>')
+								</p>
+
+								<p class="mono">
+								<span class="name">rainbow</span>, 
+								<span class="extension">png</span>
+								</p>
+
+							</div>
+
+							<div class="section">
+								<p class="question">Is it an image or a sound extension?</p>
+								<p>Image!</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Load it into the current place with the key of the name</p>
+								<p><span class="mono"><span class="place">resources</span>[<span class="name">'rainbow'</span>] = <br>love.graphics.newImage(<span class="path">'/rainbow.png'</span>)</span></p>
+							</div>
+
+							<div class="section">
+								<p class="question">Next item in the folder!</p>
+
+								<table>
+									<tbody>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">folder</td>
+											<td class="folder">''</td>
+										</tr>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">place</td>
+											<td class="place">resources</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td style="padding-top: 10pt" class="unselected">main.lua</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="unselected">rainbow.png</td>
+										</tr>
+										<tr>
+											<td align="right" class="arrow" style="padding-bottom: 1pt">&#9654;</td>
+											<td class="selected">sounds</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="section">
+								<p class="question">Create the full path by joining the folder with the item name</p>
+								<p class="mono"><span class="path">path</span> = <span class="folder">''</span> .. '/' .. <span class="item">'sounds'</span></p>
+							</div>
+
+							<div class="section">
+								<p class="question">Is it a file or a folder?</p>
+								<p><span class="mono">love.filesystem.isFile(<span class="path">'/sounds'</span>)</span> returns <b>false</b>, it's a folder!</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Create a new table in the current place with key of the folder name</p>
+								<p><span class="mono"><span class="place">resources</span>[<span class="item">'sounds'</span>] = {}</span></p>
+							</div>
+
+
+
+						</div>
+
+
+
+
+
+
+
+
+
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+
+
+
+						<div class="c">
+
+
+							<div class="section">
+								<p class="question">Repeat the function with this table and this folder path <span style="font-size: 20pt">&#8594;</span></p>
+								<p><span class="mono">load_folder(<span class="path">'/sounds'</span>, <span class="place">resources.sounds</span>)</span></p>
+							</div>
+
+						</div>
+
+
+					</td>
+					<td>
+
+
+
+						<div class="c">
+
+
+							<div class="section">
+								<p class="question">Loop through all of the items in the folder</p>
+
+								<table>
+									<tbody>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">folder</td>
+											<td class="folder">'/sounds'</td>
+										</tr>
+										<tr>
+											<td class="fp" align="right" style="padding-right: 10pt">place</td>
+											<td class="place">resources.sounds</td>
+										</tr>
+										<tr>
+											<td align="right" class="arrow" style="padding-top: 8pt">&#9654;</td>
+											<td style="padding-top: 10pt" class="selected">music</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td class="unselected">sparkle.ogg</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="section">
+								<p class="question">Create the full path by joining the folder with the item name</p>
+								<p class="mono"><span class="path">path</span> = <span class="folder">'/sounds'</span> .. '/' .. <span class="item">'music'</span></p>
+							</div>
+
+							<div class="section">
+								<p class="question">Is it a file or a folder?</p>
+								<p><span class="mono">love.filesystem.isFile(<span class="path">'/sounds/music'</span>)</span> returns <b>false</b>, it's a folder!</p>
+							</div>
+
+							<div class="section">
+								<p class="question">Create a new table in the current place with key of the folder name</p>
+								<p><span class="mono"><span class="place">resources.sounds</span>[<span class="item">'music'</span>] = {}</span></p>
+							</div>
+
+
+
+
+
+
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+
+
+							<div class="c">
+
+								<div class="section">
+									<p class="question">Repeat the function with this table and this folder path <span style="font-size: 20pt">&#8594;</span></p>
+									<p><span class="mono">load_folder(<span class="path">'sounds'</span>, <span class="place">resources.sounds</span>)</span></p>
+								</div>
+
+
+
+
+								<div class="section">
+									<p class="question">Next item in the folder!</p>
+
+									<table>
+										<tbody>
+											<tr>
+												<td class="fp" align="right" style="padding-right: 10pt">folder</td>
+												<td class="folder">'/sounds'</td>
+											</tr>
+											<tr>
+												<td class="fp" align="right" style="padding-right: 10pt">place</td>
+												<td class="place">resources.sounds</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td style="padding-top: 10pt" class="unselected">music</td>
+											</tr>
+											<tr>
+												<td align="right" class="arrow" style="padding-bottom: 1pt">&#9654;</td>
+												<td class="selected">sparkle.ogg</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<div class="section">
+									<p class="question">Create the full path by joining the folder with the item name</p>
+									<p class="mono"><span class="path">path</span> = <span class="folder">'/sounds'</span> .. '/' .. <span class="item">'sparkle.ogg'</span></p>
+								</div>
+
+								<div class="section">
+									<p class="question">Is it a file or a folder?</p>
+									<p><span class="mono">love.filesystem.isFile(<span class="path">'/sounds/sparkle.ogg'</span>)</span> returns <b>true</b>, it's a file!</p>
+								</div>
+
+								<div class="section">
+									<p class="question">Separate the name and extension</p>
+
+									<p class="mono">
+									<span class="name">name</span>,
+									<span class="extension">ext</span>
+									= (<span class="item">'sparkle.ogg'</span>):match('<span class="name">(.+)</span><span class="dot">%.</span><span class="extension">(.+)$</span>')
+									</p>
+
+									<p class="mono">
+									<span class="name">sparkle</span>, 
+									<span class="extension">ogg</span>
+									</p>
+
+								</div>
+
+								<div class="section">
+									<p class="question">Is it an image or a sound extension?</p>
+									<p>Sound!</p>
+								</div>
+
+								<div class="section">
+									<p class="question">Load it into the current place with the key of the name</p>
+									<p><span class="mono"><span class="place">resources.sounds</span>[<span class="name">'sparkle'</span>] = <br>love.graphics.newSource(<span class="path">'/sounds/sparkle.ogg'</span>)</span></p>
+								</div>
+
+
+
+							</div>
+
+
+						</td>
+						<td>
+
+
+
+							<div class="c">
+
+								<div class="section">
+									<p class="question">Loop through all of the items in the folder</p>
+
+									<table>
+										<tbody>
+											<tr>
+												<td class="fp" align="right" style="padding-right: 10pt">folder</td>
+												<td class="folder">'/sounds/music'</td>
+											</tr>
+											<tr>
+												<td class="fp" align="right" style="padding-right: 10pt">place</td>
+												<td class="place">resources.sounds.music</td>
+											</tr>
+											<tr>
+												<td align="right" class="arrow" style="padding-top: 8pt">&#9654;</td>
+												<td style="padding-top: 10pt" class="selected">smoothjazz.xm</td>
+											</tr>
+										</tbody>
+									</table>
+								</div> 
+
+
+								<div class="section">
+									<p class="question">Create the full path by joining the folder with the item name</p>
+									<p class="mono"><span class="path">path</span> = <span class="folder">'/sounds/music'</span> .. '/' .. <span class="item">'smoothjazz.xm'</span></p>
+								</div>
+
+								<div class="section">
+									<p class="question">Is it a file or a folder?</p>
+									<p><span class="mono">love.filesystem.isFile(<span class="path">'/sounds/music/smoothjazz.xm'</span>)</span> returns <b>true</b>, it's a file!</p>
+								</div>
+
+								<div class="section">
+									<p class="question">Separate the name and extension</p>
+
+									<p class="mono">
+									<span class="name">name</span>,
+									<span class="extension">ext</span>
+									= (<span class="item">'smoothjazz.xm'</span>):match('<span class="name">(.+)</span><span class="dot">%.</span><span class="extension">(.+)$</span>')
+									</p>
+
+									<p class="mono">
+									<span class="name">smoothjazz</span>, 
+									<span class="extension">xm</span>
+									</p>
+								</div>
+
+								<div class="section">
+									<p class="question">Is it an image or a sound extension?</p>
+									<p>Sound!</p>
+								</div>
+
+								<div class="section">
+									<p class="question">Load it into the current place with the key of the name</p>
+									<p><span class="mono"><span class="place">resources.sounds.music</span>[<span class="name">'smoothjazz'</span>] = <br>love.graphics.newSource(<span class="path">'/sounds/music/smoothjazz.xm'</span>)</span></p>
+
+								</div>
+							</div>
+
+
+
+
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+
+
+
+
+
+
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+			<br><br>
+			<a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAAAAABWohdTAAAA10lEQVQ4ja2TUW3EMBAFB0IgBIIhGMJBMIRACINCOAiFYAiGEAgLYfpze6dcW1Wqsx/W2taOn9564fJQOzQ1emjcWIb/DkBdaRoV2EIr1WOZUXhnDa0AbBoL3TYDLNx1QPsAQjeaYwYIoTscDeg6WBVUEDMBQSGtOh/y2GOnqDvLQYVdBa0kLpNceZUrivnuE1jVSm30E/AHhe/AvM/krJDmm0L+UsiJjQA+PeT4PHlIVqdxv3j4DZhdLr082JNdvvwfunJ7TUqU6UlxQAs9emiU2Vm+OL4ArOGH34vOFxcAAAAASUVORK5CYII=">
+			</a>
+
+
+		</div>
